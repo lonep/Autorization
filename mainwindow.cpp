@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "loginmanager.h"
+#include "aboutprogram.h"
 #include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -33,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Close";
     }));
 
+    connect(ui->About, QAction::triggered, this, [this](){showAboutDialog();});
+
 }
 
 
@@ -50,6 +53,12 @@ MainWindow::~MainWindow()
  void MainWindow::showMistakeLabel()
  {
 
+ }
+
+ void MainWindow::showAboutDialog()
+ {
+    AboutProgram about;
+    about.exec();
  }
 
  void MainWindow::closeEvent(QCloseEvent * event)

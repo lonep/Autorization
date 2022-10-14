@@ -7,7 +7,7 @@ LoginDataManager::LoginDataManager()
     parser = new ParserFromTxt();
     userList = parser->getUsersFromFile(path);
 
-    validator = new Validator();
+    validator = new Validator(this);
 }
 
 LoginDataManager::~LoginDataManager()

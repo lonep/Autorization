@@ -13,7 +13,8 @@ class userList : public QDialog
 enum states
 {
     adminRights,
-    blocked
+    blocked,
+    validation
 };
 
 public:

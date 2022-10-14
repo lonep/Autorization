@@ -21,6 +21,7 @@ userList::userList(QWidget *parent, QList <User*> users) :
             {
                 ui->adminRights->setCheckState(it->getHasAdminRights() ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
                 ui->userBlock->setCheckState(it->getIsBlocked() ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+                ui->validation->setCheckState(it->isValidatorActive() ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
                 break;
             }
         }
@@ -37,6 +38,11 @@ userList::userList(QWidget *parent, QList <User*> users) :
     connect(ui->userBlock, QCheckBox::clicked, this, [this]()
     {
         changeState(states::blocked, ui->listWidget->currentItem()->text());
+    });
+
+    connect(ui->validation, QCheckBox::clicked, this, [this]()
+    {
+        changeState(states::validation, ui->listWidget->currentItem()->text());
     });
 }
 
@@ -72,6 +78,19 @@ void userList::changeState(int state, const QString &login)
             if (login == it->getLogin())
             {
                 it->setIsBlocked(!it->getIsBlocked());
+
+                break;
+            }
+        }
+    }
+
+    if (state == states::validation)
+    {
+        foreach (auto it, users)
+        {
+            if (login == it->getLogin())
+            {
+                it->setValidatorActive(!it->isValidatorActive());
 
                 break;
             }

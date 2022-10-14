@@ -24,6 +24,7 @@ public:
 
     PanelWindow *panelWindow;
     void showMistakeLabel();
+    void showAboutDialog();
 private:
     Ui::MainWindow *ui;
     void closeEvent(QCloseEvent * event);

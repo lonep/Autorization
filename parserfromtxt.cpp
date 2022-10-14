@@ -21,7 +21,7 @@ QList<User*> ParserFromTxt::getUsersFromFile(QString path)
        {
           QString line = in.readLine();
           auto usr = line.split(" ", Qt::SkipEmptyParts);
-          users.push_back(new User(usr[0], usr[1], usr[2].toInt(), usr[3].toInt()));
+          users.push_back(new User(usr[0], usr[1], usr[2].toInt(), usr[3].toInt(), usr[4].toInt()));
        }
        inputFile.close();
     }
@@ -44,7 +44,7 @@ void ParserFromTxt::writeUsersInFile(QList<User *> users, QString path)
         foreach (auto it, users)
         {
             stream << it->getLogin() << " " << it->getPassword() << " "
-                   << it->getIsBlocked() << " " << it->getHasAdminRights() << "\n";
+                   << it->getIsBlocked() << " " << it->getHasAdminRights()<< " " << it->isValidatorActive() << "\n";
         }
     }
 }

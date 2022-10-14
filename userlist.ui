@@ -49,6 +49,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QCheckBox" name="validation">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>170</y>
+     <width>121</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Validation</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AboutProgram</class>
+ <widget class="QDialog" name="AboutProgram">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>349</width>
+    <height>92</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">font: 350 10pt &quot;Bahnschrift SemiLight&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Лабораторная работа №1</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">font: 350 10pt &quot;Bahnschrift SemiLight&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Выполнил: Котий Д.М,</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="styleSheet">
+      <string notr="true">font: 350 10pt &quot;Bahnschrift SemiLight&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Группа: ИДБ-19-10</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="styleSheet">
+      <string notr="true">font: 350 10pt &quot;Bahnschrift SemiLight&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Выриант: 10 (Наличие латинских букв, символов кириллицы и цифр.)</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
