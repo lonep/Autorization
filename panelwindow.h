@@ -23,6 +23,9 @@ public:
 
     void showUserViewDialog(QList <User*> users);
 
+    bool isClose = false;
+    bool isNewUser = false;
+
 private:
     Ui::panelWindow *ui;
     LoginDataManager* dataManager;

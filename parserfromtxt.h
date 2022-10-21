@@ -9,6 +9,9 @@ public:
 
     QList<User*> getUsersFromFile(QString path);
     void writeUsersInFile(QList<User*> users, QString path);
+
+private:
+
 };
 
 #endif // PARSERFROMTXT_H

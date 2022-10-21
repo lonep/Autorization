@@ -6,6 +6,7 @@
 #include "userlist.h"
 #include "newpassworddialog.h"
 #include "user.h"
+#include <QMessageBox>
 
 PanelWindow::PanelWindow(QWidget *parent, LoginDataManager* dataManager) :
     QWidget(parent),
@@ -18,7 +19,18 @@ PanelWindow::PanelWindow(QWidget *parent, LoginDataManager* dataManager) :
 
     connect(ui->changePassword, QPushButton::clicked, this, [this, dataManager]()
     {
-       dataManager->setNewPassword(showChangePasswordDialog(dataManager->getCurrentUser()->getPassword()));
+
+
+       QString newPassword = showChangePasswordDialog(dataManager->getCurrentUser()->getPassword());
+
+       if(dataManager->getValidator()->validatePassword(newPassword))
+           dataManager->getCurrentUser()->setPassword(newPassword);
+       else
+       {
+           QMessageBox error;
+           error.setText("Incorrect password. Password should contains only english, russian alphabet or numbers");
+           error.exec();
+       }
     });
 
     if (!dataManager->getCurrentUser()->getHasAdminRights())
@@ -38,13 +50,19 @@ PanelWindow::PanelWindow(QWidget *parent, LoginDataManager* dataManager) :
 
         if (newUserLogin != "")
         {
-            if (dataManager->addNewUser(showNewUserDialog()))
+            if (dataManager->addNewUser(newUserLogin))
             {
-                ui->label->setVisible(false);
+//                ui->label->setVisible(false);
+                QMessageBox password;
+                password.setText("Temporary password is: password");
+                password.exec();
             }
             else
             {
-                ui->label->setVisible(true);
+//                ui->label->setVisible(true);
+                QMessageBox error;;
+                error.setText("This login already exist");
+                error.exec();
             }
         }
 
@@ -58,8 +76,26 @@ PanelWindow::PanelWindow(QWidget *parent, LoginDataManager* dataManager) :
 
     if (dataManager->getCurrentUser()->getPassword() == "password")
     {
-       dataManager->getCurrentUser()->setPassword(setNewPasswordDialog());
+        this->isClose = true;
+
+        QString newPassword = showChangePasswordDialog(dataManager->getCurrentUser()->getPassword());
+
+        if(dataManager->getValidator()->validatePassword(newPassword))
+        {
+            dataManager->getCurrentUser()->setPassword(newPassword);
+            isNewUser = true;
+        }
+        else
+        {
+            QMessageBox error;
+            error.setText("Incorrect password. Password should contains only english, russian alphabet or numbers");
+            error.exec();
+        }
+
     }
+
+    if (this->isClose)
+        delete ui;
 }
 
 PanelWindow::~PanelWindow()

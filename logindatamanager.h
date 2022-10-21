@@ -8,6 +8,8 @@
 #include <QDir>
 #include "validator.h"
 
+//#include <wincrypt.h>
+
 class LoginDataManager
 {
 private:

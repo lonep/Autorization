@@ -2,6 +2,7 @@
 #include "ui_changepassworddialog.h"
 #include "validator.h"
 #include <QMessageBox>
+#include <QCryptographicHash>
 
 ChangePasswordDialog::ChangePasswordDialog( Validator *validator, QWidget *parent) :
     QDialog(parent),
@@ -13,7 +14,7 @@ ChangePasswordDialog::ChangePasswordDialog( Validator *validator, QWidget *paren
     connect(ui->acceptButton, QPushButton::clicked, this, [this, validator]()
     {
 
-        if (ui->oldPassword->text() == oldPassword)
+        if (QCryptographicHash::hash(ui->oldPassword->text().toLatin1(),QCryptographicHash::Md5).toHex() == oldPassword)
         {
             if (ui->newPassword->text() == ui->repeatPassword->text() && validator->validatePassword(ui->newPassword->text()))
                 {

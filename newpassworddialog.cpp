@@ -19,6 +19,11 @@ newPasswordDialog::newPasswordDialog(Validator* validator, QWidget *parent) :
             accept();
 
     });
+
+    connect(this, SIGNAL(clicked()), this, SLOT([this]()
+    {
+        qDebug() << "Close";
+    }));
 }
 
 newPasswordDialog::~newPasswordDialog()
@@ -31,6 +36,7 @@ bool newPasswordDialog::returnNewPassword(QString newPassword, QString repeatPas
 
     if (newPassword == repeatPassword)
     {
+        qDebug() << validator->validatePassword(repeatPassword);
         if (validator->validatePassword(repeatPassword))
         {
             this->newPassword = newPassword;
@@ -57,3 +63,5 @@ QString newPasswordDialog::getNewPassword()
 {
     return newPassword;
 }
+
+

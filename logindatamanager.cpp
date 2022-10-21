@@ -1,6 +1,7 @@
 #include "logindatamanager.h"
 #include "parserfromtxt.h"
 #include <QDir>
+#include <QCryptographicHash>
 
 LoginDataManager::LoginDataManager()
 {
@@ -26,7 +27,9 @@ int LoginDataManager::checkLoginData(QString login, QString password) // 2 - for
 {
     for (auto it: userList)
     {
-        if(it->getLogin() == login && it->getPassword() == password && !it->getIsBlocked())
+        if(it->getLogin() == login
+                && it->getPassword() == QCryptographicHash::hash(password.toLatin1(),QCryptographicHash::Md5).toHex()
+                && !it->getIsBlocked())
         {
             currentUser = it;
             if (it->getHasAdminRights())
@@ -69,12 +72,10 @@ bool LoginDataManager::addNewUser(QString login)
     {
         if (it->getLogin() == login)
             return false;
-        else
-        {
-            userList.push_back(new User(login));
-            return true;
-        }
+
     }
+    userList.push_back(new User(login));
+    return true;
 }
 
 

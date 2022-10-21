@@ -23,6 +23,9 @@ private:
     QString newPassword;
 
     Validator *validator;
+
+
+
 };
 
 #endif // NEWPASSWORDDIALOG_H

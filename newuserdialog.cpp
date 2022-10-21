@@ -1,5 +1,6 @@
 #include "newuserdialog.h"
 #include "ui_newuserdialog.h"
+#include <QMessageBox>
 
 newUserDialog::newUserDialog(QWidget *parent) :
     QDialog(parent),
@@ -10,6 +11,8 @@ newUserDialog::newUserDialog(QWidget *parent) :
     connect(ui->accept, QPushButton::clicked, this, [this]()
     {
         newUserLogin = ui->lineEdit->text();
+
+
         accept();
     });
 }

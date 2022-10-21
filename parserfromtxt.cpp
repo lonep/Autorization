@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <QCryptographicHash>
 
 ParserFromTxt::ParserFromTxt()
 {
@@ -25,6 +26,7 @@ QList<User*> ParserFromTxt::getUsersFromFile(QString path)
        }
        inputFile.close();
     }
+    qDebug() << QCryptographicHash::Md5;
 
     foreach(auto x, users)
         qDebug() << x->getLogin();
@@ -40,11 +42,13 @@ void ParserFromTxt::writeUsersInFile(QList<User *> users, QString path)
     if ( file.open(QIODevice::ReadWrite | QIODevice::Truncate) )
     {
         QTextStream stream( &file );
-
+        QString str;
         foreach (auto it, users)
         {
-            stream << it->getLogin() << " " << it->getPassword() << " "
+            stream << it->getLogin() << " "
+                   << it->getPassword() << " "
                    << it->getIsBlocked() << " " << it->getHasAdminRights()<< " " << it->isValidatorActive() << "\n";
         }
     }
+
 }

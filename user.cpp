@@ -1,5 +1,6 @@
 #include "user.h"
 #include <QDebug>
+#include <QCryptographicHash>
 
 User::User(QString log, QString pas, bool bl, bool admin, bool validator)
     : login{log}, password{pas}, isBlocked{bl}, hasAdminRights{admin}, validatorActive{validator}
@@ -35,12 +36,16 @@ bool User::isValidatorActive()
 
 void User::setLogin(const QString login)
 {
+
     this->login = login;
+
 }
 
-void User::setPassword(const QString password)
+bool User::setPassword(const QString password)
 {
-    this->password = password;
+
+    this->password = QCryptographicHash::hash(password.toLatin1(),QCryptographicHash::Md5).toHex();
+    return true;
 }
 
 void User::setIsBlocked(const bool state)

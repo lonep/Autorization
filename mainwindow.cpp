@@ -17,9 +17,17 @@ MainWindow::MainWindow(QWidget *parent)
 
         if (loginManager->login(ui->login->text(), ui->password->text()))
         {
+            ui->login->clear();
+            ui->password->clear();
+
             panelWindow = new PanelWindow(nullptr, loginManager->getLoginDataManager());
             ui->mistakLabel->setEnabled(false);
-            panelWindow->show();
+
+//            this->hide();
+            if (!(loginManager->dataManager->getCurrentUser()->getPassword() == "password") && !panelWindow->isNewUser)
+                panelWindow->show();
+
+
 
         }
         else
