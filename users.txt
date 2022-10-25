@@ -1,4 +1,0 @@
-admin admin 0 1
-user user 0 0
-pavel 12345 0 0
-dmitry 12345 0 0
