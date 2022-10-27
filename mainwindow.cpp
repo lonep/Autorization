@@ -3,17 +3,28 @@
 #include "loginmanager.h"
 #include "aboutprogram.h"
 #include <QDir>
+#include <QList>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QList <int> newList; //Костыль намеренный
+
+    if (!showCryptoPasswordDialog())
+        newList[2];
+
+
     loginManager = new LoginManager();
+
 
 
     connect(ui->loginButton, &QPushButton::clicked,this, [this]()
     {
+
+
 
         if (loginManager->login(ui->login->text(), ui->password->text()))
         {
@@ -67,6 +78,15 @@ MainWindow::~MainWindow()
  {
     AboutProgram about;
     about.exec();
+ }
+
+ bool MainWindow::showCryptoPasswordDialog()
+ {
+    CryptoPassword dialog;
+    dialog.setPassword("kopibara1");
+    dialog.exec();
+
+    return dialog.getInputState();
  }
 
  void MainWindow::closeEvent(QCloseEvent * event)

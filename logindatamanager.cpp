@@ -28,7 +28,7 @@ int LoginDataManager::checkLoginData(QString login, QString password) // 2 - for
     for (auto it: userList)
     {
         if(it->getLogin() == login
-                && it->getPassword() == QCryptographicHash::hash(password.toLatin1(),QCryptographicHash::Md5).toHex()
+                && it->getPassword() == password
                 && !it->getIsBlocked())
         {
             currentUser = it;

@@ -44,7 +44,7 @@ void User::setLogin(const QString login)
 bool User::setPassword(const QString password)
 {
 
-    this->password = QCryptographicHash::hash(password.toLatin1(),QCryptographicHash::Md5).toHex();
+    this->password = password;
     return true;
 }
 

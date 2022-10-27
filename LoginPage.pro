@@ -8,9 +8,22 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
+INCLUDEPATH +=  \
+    C:/Qt/Tools/OpenSSL/Win_x64/include
+#    C:/Users/lonep/Downloads/openssl-aes-cipher-master2/include \
+#    C:/Users/lonep/Downloads/openssl-aes-cipher-master2/easy-encryption
+
+
+
+
+
+LIBS += -LC:/Qt/Tools/OpenSSL/Win_x64/lib -lcrypto -lssl
+
 SOURCES += \
     aboutprogram.cpp \
     changepassworddialog.cpp \
+    cryptopassword.cpp \
     logindatamanager.cpp \
     loginmanager.cpp \
     main.cpp \
@@ -26,6 +39,7 @@ SOURCES += \
 HEADERS += \
     aboutprogram.h \
     changepassworddialog.h \
+    cryptopassword.h \
     logindatamanager.h \
     loginmanager.h \
     mainwindow.h \
@@ -40,6 +54,7 @@ HEADERS += \
 FORMS += \
     aboutprogram.ui \
     changepassworddialog.ui \
+    cryptopassword.ui \
     mainwindow.ui \
     newpassworddialog.ui \
     newuserdialog.ui \
@@ -53,3 +68,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     users.txt
+
+#INCLUDEPATH += C:/Program Files/OpenSSL-Win64/include

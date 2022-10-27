@@ -14,7 +14,7 @@ ChangePasswordDialog::ChangePasswordDialog( Validator *validator, QWidget *paren
     connect(ui->acceptButton, QPushButton::clicked, this, [this, validator]()
     {
 
-        if (QCryptographicHash::hash(ui->oldPassword->text().toLatin1(),QCryptographicHash::Md5).toHex() == oldPassword)
+        if (ui->oldPassword->text() == oldPassword)
         {
             if (ui->newPassword->text() == ui->repeatPassword->text() && validator->validatePassword(ui->newPassword->text()))
                 {

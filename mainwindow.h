@@ -5,6 +5,10 @@
 #include "panelwindow.h"
 #include "loginmanager.h"
 
+
+
+#include "cryptopassword.h"
+
 #include <QCloseEvent>
 
 QT_BEGIN_NAMESPACE
@@ -25,6 +29,8 @@ public:
     PanelWindow *panelWindow;
     void showMistakeLabel();
     void showAboutDialog();
+
+    bool showCryptoPasswordDialog();
 private:
     Ui::MainWindow *ui;
     void closeEvent(QCloseEvent * event);
